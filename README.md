@@ -93,12 +93,60 @@ https://www.youtube.com/watch?v=plOWDfTVvpE&t=16s&list=PLvLvpclrF-V2Mdev5MhF7zl5
 Screen Space Refelction : Lern from the website : http://roar11.com/2015/07/screen-space-glossy-reflections/ . A good website to for Screen Space Hi-Z tracing http://bitsquid.blogspot.com/2017/08/notes-on-screen-space-hiz-tracing.html 
 https://www.youtube.com/watch?v=sTAnvPJCINs&list=PLvLvpclrF-V2Mdev5MhF7zl5RDFbaqnBF&index=15&t=0s
 
+
+
+
+### 3. Direcx12 Framework : This project is included by all the Unitests and Graphics Techniques. It is the core of this framework. It only generate lib file.
+### 4. Graphics Utility : This project is included by part Unitests and Graphics Techniques. It contains some helper structer like spot light, Transform, Camera.... It only generate lib file.
+
+
+# Proper Use of Protobuf with vcpkg in Visual Studio
+
+This project demonstrates how to properly integrate and use **Protocol Buffers (Protobuf)** in a development environment with **Visual Studio 2022** and **vcpkg**.
+
+---
+
+## ✅ Steps to Install and Configure Protobuf
+
+### 1. Install vcpkg in the project directory
+
+Clone `vcpkg` into your project (for example, into a folder named `external/vcpkg`):
+
+- Open a terminal or command prompt  
+- Run the following commands:
+
+  git clone https://github.com/microsoft/vcpkg.git external/vcpkg  
+  cd external/vcpkg  
+  bootstrap-vcpkg.bat
+
+### Install Protobuf with vcpkg
+
+Install Protobuf for 64-bit Windows using:
+
+vcpkg install protobuf:x64-windows
+
+### Locate `protoc.exe` and copy it
+
+After installation, navigate to the following folder:
+
+vcpkg/installed/x64-windows/tools/protobuf/
+
+Copy `protoc.exe` and the required DLLs into a folder inside your project, for example: `your_project/protobuf`.
+
+### Generate C++ files from `.proto`
+
+Run the following command to generate the C++ header and source files:
+
+./protoc.exe --cpp_out=../include/ProtoBuf pipeline.proto
+This will generate `pipeline.pb.h` and `pipeline.pb.cc` in the specified output directory.
+
+## Additional Notes
+
+If you encounter issues when building certain test files, make sure to add the required references in Visual Studio, such as `GraphicsUtility` or other necessary dependencies.
+
+
 ![image](https://user-images.githubusercontent.com/30221942/41207912-0460ed48-6cd2-11e8-9a49-69f5b8cd9ba9.png)
 
 Foward Plus: use depth buffer to cull lights out for little block area on the screen
 https://www.youtube.com/watch?v=OMG3N5X_wuo
 ![image](https://user-images.githubusercontent.com/30221942/91628647-9f861a00-e976-11ea-8ab0-e991aaf8d8f2.png)
-
-
-### 3. Direcx12 Framework : This project is included by all the Unitests and Graphics Techniques. It is the core of this framework. It only generate lib file.
-### 4. Graphics Utility : This project is included by part Unitests and Graphics Techniques. It contains some helper structer like spot light, Transform, Camera.... It only generate lib file.
